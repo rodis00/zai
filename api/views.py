@@ -22,3 +22,7 @@ class UserDetailView(generics.RetrieveAPIView):
 class UserUpdateView(generics.UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = serializers.UserUpdateSerializer
+
+
+class UserDeleteView(generics.DestroyAPIView):
+    queryset = User.objects.all()
