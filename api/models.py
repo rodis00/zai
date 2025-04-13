@@ -13,6 +13,7 @@ class Restaurant(models.Model):
 class Address(models.Model):
     city = models.CharField(max_length=120)
     country = models.CharField(max_length=120)
+    street = models.CharField(max_length=120, null=True)
     zipcode = models.CharField(max_length=120)
     restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE)
 
