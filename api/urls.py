@@ -25,4 +25,11 @@ urlpatterns = [
     path('address/<int:pk>/', views.AddressDetailView.as_view(), name='address-detail'),
     path('address/<int:pk>/update/', views.AddressUpdateView.as_view(), name='address-update'),
     path('address/<int:pk>/delete/', views.AddressDeleteView.as_view(), name='address-delete'),
+
+    # dishes
+    path('dishes/', views.DishListView.as_view(), name='dish-list'),
+    path('dishes/create/', views.DishCreateView.as_view(), name='dish-create'),
+    path('dishes/<int:pk>/', views.DishDetailView.as_view(), name='dish-detail'),
+    path('dishes/<int:pk>/update/', views.DishUpdateView.as_view(), name='dish-update'),
+    path('dishes/<int:pk>/delete/', views.DishDeleteView.as_view(), name='dish-delete'),
 ]
