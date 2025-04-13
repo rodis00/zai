@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
+from api.models import Order
+from api.serializers import dish_serializers
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -40,3 +42,11 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+
+class UserOrderSerializer(serializers.ModelSerializer):
+    dishes = dish_serializers.DishInfoSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Order
+        fields = ['id', 'payment', 'created_at', 'dishes']
