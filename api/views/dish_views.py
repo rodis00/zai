@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 
 from api.models import Dish
 from api.serializers import dish_serializers as serializers
@@ -15,14 +15,17 @@ class DishDetailView(generics.RetrieveAPIView):
 
 
 class DishCreateView(generics.CreateAPIView):
+    permission_classes = [permissions.IsAdminUser]
     queryset = Dish.objects.all()
     serializer_class = serializers.DishCreateSerializer
 
 
 class DishUpdateView(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAdminUser]
     queryset = Dish.objects.all()
     serializer_class = serializers.DishUpdateSerializer
 
 
 class DishDeleteView(generics.DestroyAPIView):
+    permission_classes = [permissions.IsAdminUser]
     queryset = Dish.objects.all()
