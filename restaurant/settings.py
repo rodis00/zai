@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'django_filters',
+    "graphene_django"
 ]
 
 REST_FRAMEWORK = {
@@ -62,6 +63,10 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+GRAPHENE = {
+    "SCHEMA": "restaurant.schema.my_schema"
 }
 
 MIDDLEWARE = [
