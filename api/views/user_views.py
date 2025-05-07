@@ -38,7 +38,9 @@ class UserOrdersView(generics.ListAPIView):
 
     def get_queryset(self):
         user_id = self.kwargs.get('pk')
-        return Order.objects.filter(customer__id=user_id)
+        return Order.objects.filter(customer__id=user_id).annotate(
+            total_price=Sum('dishes__price')
+        )
 
 
 class UserOrdersStatsView(APIView):
