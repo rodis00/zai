@@ -6,12 +6,14 @@ from api.graphql.types import UserType
 
 
 class UserQuery(graphene.ObjectType):
-    users = graphene.List(UserType)
+    users = graphene.List(
+        UserType, limit=graphene.Int(), offset=graphene.Int()
+    )
     user_by_id = graphene.Field(UserType, id=graphene.Int())
 
     @login_required
-    def resolve_users(self, info):
-        return User.objects.all()
+    def resolve_users(self, info, limit=10, offset=0):
+        return User.objects.all()[offset:offset + limit]
 
     @login_required
     def resolve_user_by_id(self, info, id):
