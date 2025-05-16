@@ -38,7 +38,17 @@ class AddressType(DjangoObjectType):
 
 class OrderType(DjangoObjectType):
     customer = graphene.Field(UserShortType)
+    total_price = graphene.Float()
 
     class Meta:
         model = Order
         fields = "__all__"
+
+    def resolve_total_price(self, info):
+        return self.total_price if hasattr(self, 'total_price') else None
+
+
+class UserOrderStatsType(graphene.ObjectType):
+    total_orders = graphene.Int()
+    total_spent = graphene.Float()
+    average_dish_price = graphene.Float()
